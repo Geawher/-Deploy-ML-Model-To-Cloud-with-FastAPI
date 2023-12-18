@@ -105,7 +105,7 @@ def test_model_inference_class_0(sample_data2):
     assert r.status_code == 200
     assert r.json()[0]["age"] == sample_data2["age"]
     assert r.json()[0]["fnlgt"] == sample_data2["fnlgt"]
-    assert r.json()[0]["prediction"] == " >50K"
+    assert r.json()[0]["prediction"] == ">50K"
 
 
 def test_incomplete_inference_query():
