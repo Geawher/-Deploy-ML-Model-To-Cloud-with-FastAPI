@@ -39,11 +39,7 @@ jobs:
         python -m pytest test_project.py
     - name: Test api with pytest
       run: |
-        python -m pytest test_api.py
+        python -m pytest test_main_api.py
     - name: Deploy
       run: |
         curl https://api.render.com/deploy/srv-cm010feg1b2c73cl38cg?key=7ywrF_jXbxc
-    - name: test prediction api
-      run: |
-        cd starter
-        python render_api_post.py

@@ -90,7 +90,7 @@ def compute_slices(dataframe, feature, y, preds):
     """
     slice_options = dataframe[feature].unique()
     performance_data = []
-    save_path = "./starter/starter/ml/slice_output.txt"
+    save_path = "starter/starter/ml/slice_output.txt"
 
     for option in slice_options:
         slice_mask = dataframe[feature] == option
