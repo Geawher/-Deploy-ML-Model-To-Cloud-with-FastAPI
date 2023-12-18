@@ -25,7 +25,7 @@ features = {
 }
 
 
-app_url = "https://udacity-project-3-fdbj.onrender.com/predict"
+app_url = "https://udacity-project-3-fdbj.onrender.com/predict_salary"
 
 r = requests.post(app_url, json=features)
 assert r.status_code == 200

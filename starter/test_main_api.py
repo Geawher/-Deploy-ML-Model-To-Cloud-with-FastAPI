@@ -84,11 +84,11 @@ def test_welcome_message():
 
 def test_model_inference_class1(sample_data):
     """
-    Test for model inference endpoint ("/predict") for class 1 prediction.
+    Test for model inference endpoint ("/predict_salary") for class 1 prediction.
 
     Checks if the response status code is 200 and if the returned prediction matches the expected values.
     """
-    r = client.post("/predict", json=sample_data)
+    r = client.post("/predict_salary", json=sample_data)
 
     assert r.status_code == 200
     assert r.json()[0]["age"] == sample_data["age"]
@@ -98,10 +98,10 @@ def test_model_inference_class1(sample_data):
 
 def test_model_inference_class_0(sample_data2):
     """
-    Test for model inference endpoint ("/predict") for class 0 prediction.
+    Test for model inference endpoint ("/predict_salary") for class 0 prediction.
     """
 
-    r = client.post("/predict", json=sample_data2)
+    r = client.post("/predict_salary", json=sample_data2)
     assert r.status_code == 200
     assert r.json()[0]["age"] == sample_data2["age"]
     assert r.json()[0]["fnlgt"] == sample_data2["fnlgt"]
@@ -120,7 +120,7 @@ def test_incomplete_inference_query():
         "fnlgt": 5178,
         "sex": "Female",
     }
-    r = client.post("/predict", json=data)
+    r = client.post("/predict_salary", json=data)
     assert r.status_code == 422
     assert "prediction" not in r.json()["detail"][0].keys()
 

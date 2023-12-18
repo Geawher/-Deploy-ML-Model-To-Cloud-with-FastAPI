@@ -233,7 +233,7 @@ def read_root():
     }
 
 
-@app.post("/predict")
+@app.post("/predict_salary")
 def predict(input: ModelInput):
     """
     Endpoint for making predictions based on input data.
