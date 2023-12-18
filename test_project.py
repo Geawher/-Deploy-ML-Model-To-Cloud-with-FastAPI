@@ -93,9 +93,7 @@ def data_train_test(data, cat_features):
         encoder=encoder,
         lb=lb,
     )
-    print("###########&&&&&&&&&&&&&&&")
-    print(X_train.shape)
-    print(X_test.shape)
+
     return X_train, X_test, y_train, y_test
 
 

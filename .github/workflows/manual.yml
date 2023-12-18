@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 permissions:
   contents: read
@@ -38,3 +38,14 @@ jobs:
       run: |
         cd starter
         python -m pytest test_project.py
+    - name: Test api with pytest
+      run: |
+        cd starter
+        python -m pytest test_main_api.py
+    - name: Deploy
+      run: |
+        curl https://api.render.com/deploy/srv-cm010feg1b2c73cl38cg?key=7ywrF_jXbxc
+    - name: test prediction api
+      run: |
+        cd starter
+        python post_render_api.py
