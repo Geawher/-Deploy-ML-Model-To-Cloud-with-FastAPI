@@ -5,7 +5,9 @@ This module defines fixtures and tests to ensure the correct behavior of the ML 
 import os
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "starter", "starter", "ml"))
+sys.path.append(
+    os.path.join(os.path.dirname(__file__), "starter", "starter", "ml")
+)
 import logging
 import pytest
 from sklearn.model_selection import train_test_split
@@ -177,7 +179,9 @@ def test_compute_model_metrics(model, data_train_test):
         raise AssertionError
 
 
-def test_compute_performance_for_slices(data, data_train_test, cat_features, model):
+def test_compute_performance_for_slices(
+    data, data_train_test, cat_features, model
+):
     """
     Test for verifying that the model can compute metrics for different slices.
 

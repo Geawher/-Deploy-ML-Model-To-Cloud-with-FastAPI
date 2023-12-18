@@ -23,7 +23,8 @@ CURRENT_PATH = os.getcwd()
 
 # Initialize the app
 app = FastAPI(
-    title="Model API", description="This API takes in data and returns a prediction"
+    title="Model API",
+    description="This API takes in data and returns a prediction",
 )
 
 
@@ -104,9 +105,16 @@ class ModelInput(BaseModel):
         "Armed-Forces",
     ]
     relationship: Literal[
-        "Wife", "Own-child", "Husband", "Not-in-family", "Other-relative", "Unmarried"
+        "Wife",
+        "Own-child",
+        "Husband",
+        "Not-in-family",
+        "Other-relative",
+        "Unmarried",
     ]
-    race: Literal["White", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "Other", "Black"]
+    race: Literal[
+        "White", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "Other", "Black"
+    ]
     sex: Literal["Female", "Male"]
     capital_gain: int
     capital_loss: int

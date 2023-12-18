@@ -4,7 +4,12 @@ import pickle
 import pandas as pd
 from ml.data import process_data
 from sklearn.model_selection import train_test_split
-from ml.model import train_model, compute_model_metrics, inference, compute_slices
+from ml.model import (
+    train_model,
+    compute_model_metrics,
+    inference,
+    compute_slices,
+)
 
 # Add the necessary imports for the starter code.
 
