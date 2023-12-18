@@ -100,7 +100,7 @@ def test_model_inference_class_0(sample_data2):
     Test for model inference endpoint ("/predict") for class 0 prediction.
     """
 
-    r = client.post("/predict/", json=sample_data2)
+    r = client.post("/predict", json=sample_data2)
     assert r.status_code == 200
     assert r.json()[0]["age"] == sample_data2["age"]
     assert r.json()[0]["fnlgt"] == sample_data2["fnlgt"]
