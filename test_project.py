@@ -4,7 +4,8 @@ This module defines fixtures and tests to ensure the correct behavior of the ML 
 # Add ML module path to sys.path
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), "starter","starter","ml"))
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "starter", "starter", "ml"))
 import logging
 import pytest
 from sklearn.model_selection import train_test_split
@@ -16,6 +17,7 @@ import joblib
 DATA_PATH = "starter/data/census.csv"
 MODEL_PATH = "starter/model/trained_model.pkl"
 
+
 @pytest.fixture()
 def data():
     """
@@ -25,7 +27,7 @@ def data():
     pd.DataFrame: Loaded dataset.
     """
     data = pd.read_csv(DATA_PATH)
-    data.columns = data.columns.str.replace(' ', '')
+    data.columns = data.columns.str.replace(" ", "")
     return data
 
 
@@ -40,6 +42,7 @@ def model():
 
     return joblib.load(MODEL_PATH)
 
+
 @pytest.fixture()
 def cat_features():
     """
@@ -48,15 +51,18 @@ def cat_features():
     Returns:
     list: List of categorical features.
     """
-    cat_features = ["workclass",
-                    "education",
-                    "marital-status",
-                    "occupation",
-                    "relationship",
-                    "race",
-                    "sex",
-                    "native-country"]
+    cat_features = [
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native-country",
+    ]
     return cat_features
+
 
 @pytest.fixture()
 def data_train_test(data, cat_features):
@@ -70,17 +76,23 @@ def data_train_test(data, cat_features):
     Returns:
     tuple: Training and testing data.
     """
-    train, test = train_test_split(data,
-                                   test_size=0.20,
-                                   random_state=0,
-                                   )
+    train, test = train_test_split(
+        data,
+        test_size=0.20,
+        random_state=0,
+    )
     X_train, y_train, encoder, lb = process_data(
         train, categorical_features=cat_features, label="salary", training=True
     )
 
-    X_test, y_test, _, _ = process_data(test, categorical_features=cat_features,
-                                                     label="salary", training=False,
-                                                     encoder=encoder, lb=lb)
+    X_test, y_test, _, _ = process_data(
+        test,
+        categorical_features=cat_features,
+        label="salary",
+        training=False,
+        encoder=encoder,
+        lb=lb,
+    )
     print("###########&&&&&&&&&&&&&&&")
     print(X_train.shape)
     print(X_test.shape)
@@ -106,7 +118,8 @@ def test_import_data():
     except AssertionError:
         logging.error("Dataset is empty")
         raise AssertionError
-    
+
+
 def test_features(data, cat_features):
     """
     Test for verifying the identification of categorical features in the dataset.
@@ -123,7 +136,8 @@ def test_features(data, cat_features):
     except AssertionError:
         logging.error("Features are not correctly identified")
         raise AssertionError
-    
+
+
 def test_model_can_predict(model, data_train_test):
     """
     Test for verifying that the model can make predictions.
@@ -163,10 +177,9 @@ def test_compute_model_metrics(model, data_train_test):
     except AssertionError:
         logging.error("Model can't compute metrics")
         raise AssertionError
-    
 
-def test_compute_performance_for_slices(
-        data, data_train_test, cat_features, model):
+
+def test_compute_performance_for_slices(data, data_train_test, cat_features, model):
     """
     Test for verifying that the model can compute metrics for different slices.
 
@@ -186,7 +199,7 @@ def test_compute_performance_for_slices(
         for feature in cat_features:
             compute_slices(test, feature, y_test, preds)
         # Check that the file is created
-        assert os.path.exists('starter/starter/ml/slice_output.txt')
+        assert os.path.exists("starter/starter/ml/slice_output.txt")
     except AssertionError:
         logging.error("Model can't compute slices")
         raise AssertionError
