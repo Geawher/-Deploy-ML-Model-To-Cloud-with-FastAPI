@@ -36,7 +36,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=20 --max-line-length=127 --statistics --ignore=E402,W391,W503
     - name: Test model with pytest
       run: |
-        cd starter
         python -m pytest test_project.py
     - name: Test api with pytest
       run: |
