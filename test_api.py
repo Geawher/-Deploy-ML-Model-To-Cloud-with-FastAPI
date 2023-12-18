@@ -6,7 +6,8 @@ Uses pytest and FastAPI TestClient for testing the API endpoints.
 
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__),"starter"))
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "starter"))
 
 from main import app
 import logging
@@ -26,21 +27,21 @@ def sample_data():
     dict: A dictionary containing sample input data.
     """
     return {
-    "age": 50,
-    "capital_gain": 0,
-    "capital_loss": 0,
-    "education": "Bachelors",
-    "education_num": 13,
-    "fnlgt": 83311,
-    "hours_per_week": 40,
-    "marital_status": "Married-civ-spouse",
-    "native_country": "United-States",
-    "occupation": "Exec-managerial",
-    "race": "White",
-    "relationship": "Husband",
-    "sex": "Male",
-    "workclass": "Self-emp-not-inc"
-}
+        "age": 50,
+        "capital_gain": 0,
+        "capital_loss": 0,
+        "education": "Bachelors",
+        "education_num": 13,
+        "fnlgt": 83311,
+        "hours_per_week": 40,
+        "marital_status": "Married-civ-spouse",
+        "native_country": "United-States",
+        "occupation": "Exec-managerial",
+        "race": "White",
+        "relationship": "Husband",
+        "sex": "Male",
+        "workclass": "Self-emp-not-inc",
+    }
 
 
 @pytest.fixture
@@ -65,7 +66,7 @@ def sample_data2():
         "race": "White",
         "relationship": "Wife",
         "sex": "Female",
-        "workclass": "Self-emp-inc"
+        "workclass": "Self-emp-inc",
     }
 
 
@@ -77,8 +78,10 @@ def test_welcome_message():
     """
     r = client.get("/")
     assert r.status_code == 200
-    assert r.json()[
-        'message'] == "Hello world! This is the third project of the Udacity MLops Nanodegree!"
+    assert (
+        r.json()["message"]
+        == "Hello world! This is the third project of the Udacity MLops Nanodegree!"
+    )
 
 
 def test_model_inference_class1(sample_data):
@@ -92,7 +95,7 @@ def test_model_inference_class1(sample_data):
     assert r.status_code == 200
     assert r.json()[0]["age"] == sample_data["age"]
     assert r.json()[0]["fnlgt"] == sample_data["fnlgt"]
-    assert r.json()[0]["prediction"] == ' <=50K'
+    assert r.json()[0]["prediction"] == " <=50K"
 
 
 def test_model_inference_class_0(sample_data2):
@@ -105,23 +108,25 @@ def test_model_inference_class_0(sample_data2):
     assert r.status_code == 200
     assert r.json()[0]["age"] == sample_data2["age"]
     assert r.json()[0]["fnlgt"] == sample_data2["fnlgt"]
-    assert r.json()[0]["prediction"] == ' >50K'
+    assert r.json()[0]["prediction"] == " >50K"
 
 
 def test_incomplete_inference_query():
     """
     Test for incomplete model inference query.
 
-    Checks if the response status code is 422 (Unprocessable Entity) and if the 'prediction' key is not present in the response.
+    Checks if the response status code is 422 and if the 'prediction' key is not present in the response.
     """
     data = {
         "occupation": "Prof-specialty",
         "race": "Black",
         "fnlgt": 5178,
-        "sex": "Female"}
+        "sex": "Female",
+    }
     r = client.post("/predict", json=data)
     assert r.status_code == 422
-    assert 'prediction' not in r.json()["detail"][0].keys()
+    assert "prediction" not in r.json()["detail"][0].keys()
 
     logging.warning(
-        f"The sample has {len(data)} features. Must be 14 features")
+        f"The sample has {len(data)} features. Must be 14 features"
+    )
