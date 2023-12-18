@@ -50,21 +50,21 @@ def sample_data2():
     dict: A dictionary containing sample input data.
     """
     return {
-        "age": 52,
-        "capital_gain": 15024,
-        "capital_loss": 0,
-        "education": "HS-grad",
-        "education_num": 9,
-        "fnlgt": 287927,
-        "hours_per_week": 40,
-        "marital_status": "Married-civ-spouse",
-        "native_country": "United-States",
-        "occupation": "Exec-managerial",
-        "race": "White",
-        "relationship": "Wife",
-        "sex": "Female",
-        "workclass": "Self-emp-inc",
-    }
+  "age": 52,
+  "capital_gain": 15024,
+  "capital_loss": 0,
+  "education": "HS-grad",
+  "education_num": 9,
+  "fnlgt": 287927,
+  "hours_per_week": 40,
+  "marital_status": "Married-civ-spouse",
+  "native_country": "United-States",
+  "occupation": "Exec-managerial",
+  "race": "White",
+  "relationship": "Wife",
+  "sex": "Female",
+  "workclass": "Self-emp-inc"
+}
 
 
 def test_welcome_message():
