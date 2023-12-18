@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./starter/starter/ml"
+        "./starter/starter/ml",
+        "./starter"
     ]
 }
