@@ -3,12 +3,14 @@ Tests for the FastAPI application.
 
 Uses pytest and FastAPI TestClient for testing the API endpoints.
 """
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__)))
 
 from main import app
 import logging
 import pytest
 from fastapi.testclient import TestClient
-
 
 client = TestClient(app)
 
