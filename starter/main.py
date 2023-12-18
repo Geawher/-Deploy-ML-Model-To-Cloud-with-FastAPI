@@ -279,11 +279,11 @@ def predict(input: ModelInput):
     ]
     # Load saved objects
     with open(
-        os.path.join(CURRENT_PATH, "model", "trained_model.pkl"), "rb"
+        os.path.join(CURRENT_PATH, "starter","model", "trained_model.pkl"), "rb"
     ) as model_file, open(
-        os.path.join(CURRENT_PATH, "model", "encoder.pkl"), "rb"
+        os.path.join(CURRENT_PATH, "starter","model", "encoder.pkl"), "rb"
     ) as encoder_file, open(
-        os.path.join(CURRENT_PATH, "model", "labelizer.pkl"), "rb"
+        os.path.join(CURRENT_PATH, "starter","model", "labelizer.pkl"), "rb"
     ) as lb_file:
         model = pickle.load(model_file)
         encoder = pickle.load(encoder_file)
