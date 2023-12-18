@@ -48,4 +48,4 @@ jobs:
     - name: test prediction api
       run: |
         cd starter
-        python post_render_api.py
+        python render_api_post.py
