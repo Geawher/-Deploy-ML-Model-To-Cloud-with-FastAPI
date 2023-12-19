@@ -9,7 +9,7 @@ import pickle
 import os
 import sys
 
-# Add ML module path to sys.path
+# Add ML module path to sys.path (to allow import from data)
 sys.path.append(os.path.join(os.path.dirname(__file__), "starter", "ml"))
 
 import uvicorn
@@ -47,16 +47,15 @@ class ModelInput(BaseModel):
     """
 
     age: int
-    workclass: Literal[
-        "Local-gov",
-        "Self-emp-inc",
-        "Without-pay",
-        "State-gov",
-        "Self-emp-not-inc",
-        "Private",
-        "Federal-gov",
-    ]
     fnlgt: int
+    capital_gain: int
+    capital_loss: int
+    hours_per_week: int
+    education_num: int
+    sex: Literal["Female", "Male"]
+    race: Literal[
+        "White", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "Other", "Black"
+    ]
     education: Literal[
         "Bachelors",
         "HS-grad",
@@ -75,7 +74,15 @@ class ModelInput(BaseModel):
         "7th-8th",
         "Doctorate",
     ]
-    education_num: int
+    workclass: Literal[
+        "Local-gov",
+        "Self-emp-inc",
+        "Without-pay",
+        "State-gov",
+        "Self-emp-not-inc",
+        "Private",
+        "Federal-gov",
+    ]
     marital_status: Literal[
         "Never-married",
         "Married-civ-spouse",
@@ -109,13 +116,7 @@ class ModelInput(BaseModel):
         "Other-relative",
         "Unmarried",
     ]
-    race: Literal[
-        "White", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "Other", "Black"
-    ]
-    sex: Literal["Female", "Male"]
-    capital_gain: int
-    capital_loss: int
-    hours_per_week: int
+
     native_country: Literal[
         "United-States",
         "Cuba",
