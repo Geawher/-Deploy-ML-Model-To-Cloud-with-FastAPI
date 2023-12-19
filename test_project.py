@@ -23,10 +23,10 @@ MODEL_PATH = "starter/model/trained_model.pkl"
 @pytest.fixture()
 def data():
     """
-    Fixture for loading the dataset.
+    Fixture to load the dataset.
 
     Returns:
-    pd.DataFrame: Loaded dataset.
+    data (pd.DataFrame): Loaded dataset.
     """
     data = pd.read_csv(DATA_PATH)
     data.columns = data.columns.str.replace(" ", "")
@@ -36,7 +36,7 @@ def data():
 @pytest.fixture()
 def model():
     """
-    Fixture for loading the trained ML model.
+    Fixture to load the trained ML model.
 
     Returns:
     object: Trained ML model.
@@ -48,7 +48,7 @@ def model():
 @pytest.fixture()
 def cat_features():
     """
-    Fixture for providing categorical features.
+    Fixture to provide categorical features.
 
     Returns:
     list: List of categorical features.
@@ -69,7 +69,7 @@ def cat_features():
 @pytest.fixture()
 def data_train_test(data, cat_features):
     """
-    Fixture for preparing training and testing data.
+    Fixture to prepare training and testing data.
 
     Args:
     - data (pd.DataFrame): Loaded dataset.
@@ -101,7 +101,7 @@ def data_train_test(data, cat_features):
 
 def test_import_data():
     """
-    Test for importing and checking the dataset.
+    Test to import and check the dataset.
 
     Raises:
     - FileNotFoundError: If the dataset is not found.
@@ -110,19 +110,19 @@ def test_import_data():
     try:
         data = pd.read_csv(DATA_PATH)
     except FileNotFoundError:
-        logging.error("Dataset not found, check your path")
+        logging.error("ERROR: Dataset not found, check your path")
         raise FileNotFoundError
     try:
         assert data.shape[0] > 0
         assert data.shape[1] > 0
     except AssertionError:
-        logging.error("Dataset is empty")
+        logging.error("ERROR: Dataset is empty")
         raise AssertionError
 
 
 def test_features(data, cat_features):
     """
-    Test for verifying the identification of categorical features in the dataset.
+    Test to verify the identification of categorical features in the dataset.
 
     Args:
     - data (pd.DataFrame): Loaded dataset.
@@ -134,7 +134,7 @@ def test_features(data, cat_features):
     try:
         assert all(feature in data.columns for feature in cat_features)
     except AssertionError:
-        logging.error("Features are not correctly identified")
+        logging.error("ERROR: Features are not correctly identified")
         raise AssertionError
 
 
@@ -153,12 +153,12 @@ def test_model_can_predict(model, data_train_test):
     try:
         assert model.predict(X_test)
     except BaseException:
-        logging.error("Model is not fitted!")
+        logging.error("ERROR: Model is not fitted!")
 
 
 def test_compute_model_metrics(model, data_train_test):
     """
-    Test for verifying that the model can compute metrics.
+    Test to verify if the model can compute metrics.
 
     Args:
     - model (object): Trained machine learning model.
@@ -175,7 +175,7 @@ def test_compute_model_metrics(model, data_train_test):
         assert isinstance(recall, float)
         assert isinstance(fbeta, float)
     except AssertionError:
-        logging.error("Model can't compute metrics")
+        logging.error("ERROR: Model can't compute metrics")
         raise AssertionError
 
 
@@ -183,7 +183,7 @@ def test_compute_performance_for_slices(
     data, data_train_test, cat_features, model
 ):
     """
-    Test for verifying that the model can compute metrics for different slices.
+    Test to verify if the model can compute metrics for different slices.
 
     Args:
     - data (pd.DataFrame): Loaded dataset.
@@ -203,5 +203,5 @@ def test_compute_performance_for_slices(
         # Check that the file is created
         assert os.path.exists("starter/starter/ml/slice_output.txt")
     except AssertionError:
-        logging.error("Model can't compute slices")
+        logging.error("ERROR: Model can't compute slices")
         raise AssertionError

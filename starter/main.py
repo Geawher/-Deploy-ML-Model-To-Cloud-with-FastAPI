@@ -1,7 +1,7 @@
 """
-FastAPI application for serving machine learning model predictions.
+FastAPI application for serving ML model predictions.
 
-This module defines a FastAPI application with an endpoint for making predictions using a trained machine learning model.
+This module defines a FastAPI application with an endpoint for making predictions using a trained ML model.
 """
 
 from typing import Literal
@@ -21,7 +21,7 @@ import pandas as pd
 # Initialize the app
 app = FastAPI(
     title="Model API",
-    description="This API takes in data and returns a prediction",
+    description="This API takes data as input and returns a prediction",
 )
 
 
@@ -48,13 +48,13 @@ class ModelInput(BaseModel):
 
     age: int
     workclass: Literal[
+        "Local-gov",
+        "Self-emp-inc",
+        "Without-pay",
         "State-gov",
         "Self-emp-not-inc",
         "Private",
         "Federal-gov",
-        "Local-gov",
-        "Self-emp-inc",
-        "Without-pay",
     ]
     fnlgt: int
     education: Literal[
@@ -63,10 +63,6 @@ class ModelInput(BaseModel):
         "11th",
         "Masters",
         "9th",
-        "Some-college",
-        "Assoc-acdm",
-        "7th-8th",
-        "Doctorate",
         "Assoc-voc",
         "Prof-school",
         "5th-6th",
@@ -74,30 +70,34 @@ class ModelInput(BaseModel):
         "Preschool",
         "12th",
         "1st-4th",
+        "Some-college",
+        "Assoc-acdm",
+        "7th-8th",
+        "Doctorate",
     ]
     education_num: int
     marital_status: Literal[
         "Never-married",
         "Married-civ-spouse",
+        "Married-AF-spouse",
         "Divorced",
         "Married-spouse-absent",
         "Separated",
-        "Married-AF-spouse",
         "Widowed",
     ]
     occupation: Literal[
         "Tech-support",
         "Craft-repair",
         "Other-service",
+        "Transport-moving",
+        "Priv-house-serv",
         "Sales",
         "Exec-managerial",
+        "Adm-clerical",
+        "Farming-fishing",
         "Prof-specialty",
         "Handlers-cleaners",
         "Machine-op-inspct",
-        "Adm-clerical",
-        "Farming-fishing",
-        "Transport-moving",
-        "Priv-house-serv",
         "Protective-serv",
         "Armed-Forces",
     ]
